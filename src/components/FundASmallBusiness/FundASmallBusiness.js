@@ -9,7 +9,12 @@ class FundASmallBusiness extends Component {
     super();
     
     this.state = {
-      women: []
+      women: [],
+      allowEdit: false,
+      img: '',
+      name: '',
+      cost: 0,
+      description: ''
     }
   }
 
@@ -21,6 +26,31 @@ class FundASmallBusiness extends Component {
     axios.delete(`http://localhost:4423/api/women/${e.target.id}`)
     .then(res => this.setState({women: res.data}))
     .catch(err => console.log(err))
+  }
+
+  save = (e) => {
+    console.log('saving')
+
+    const body = {
+      id: e.target.id,
+      img: this.props.img,
+      name: this.props.name,
+      cost: this.props.cost,
+      description: this.props.description
+    }
+
+    console.log(body)
+
+    axios.put(`http://localhost:4423/api/women/${e.target.id}`, body)
+    .then(res => this.setState({women: res.data, allowEdit: false}))
+    .catch(err => console.log(err))
+
+
+  }
+
+  handleChange = (e) => {
+    console.log(this.state[e.target.name])
+    this.setState({[e.target.name]: e.target.value})
   }
   
   componentDidMount(){
@@ -43,7 +73,7 @@ class FundASmallBusiness extends Component {
               // console.log(e.name)
               // console.log(e.cost)
               // console.log(e.description)
-              return (<WomanProfile key={e.id} id={e.id} profileImage={e.img} name={e.name} cost={e.cost} description={e.description} delete={this.delete}/>)
+              return (<WomanProfile key={e.id} id={e.id} profileImage={e.img} name={e.name} cost={e.cost} description={e.description} delete={this.delete} save={this.save} handleChange={this.handlChange}/>)
             })}
         </MainDisplay>
       </MainContainer>

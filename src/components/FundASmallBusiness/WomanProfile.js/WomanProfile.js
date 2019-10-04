@@ -89,12 +89,12 @@ class WomanProfile extends Component {
     super()
 
     this.state = {
-      allowEdit: false,
-      id: props.id,
-      img: '',
-      name: '',
-      cost: 0,
-      description: ''
+      // allowEdit: false,
+      // id: props.id,
+      // img: '',
+      // name: '',
+      // cost: 0,
+      // description: ''
     }
 
     // this.props.edit.bind(this)
@@ -103,29 +103,6 @@ class WomanProfile extends Component {
   edit(){
     console.log('Editing')
     this.setState({allowEdit: true})
-  }
-
-  save = (e) => {
-    console.log('saving')
-
-    const body = {
-      id: this.props.id,
-      img: this.props.img,
-      name: this.props.name,
-      cost: this.props.cost,
-      description: this.props.description
-    }
-
-    console.log(body)
-
-    axios.put(`http://localhost:4423/api/women/${this.props.id}`, body)
-    .then(res => this.setState({women: res.data}))
-    .catch(err => console.log(err))
-  }
-
-  handleChange = (e) => {
-    console.log(this.state[e.target.name])
-    this.setState({[e.target.name]: e.target.value})
   }
   
   render(){
@@ -136,18 +113,18 @@ class WomanProfile extends Component {
           <WomanProfileContainer>
             {/* <ProfileImage src={this.props.profileImage}/> */}
             <StyledLabel>Profile Picture: </StyledLabel>
-            <StyledInput name="img" defaultValue={this.props.profileImage} onChange={this.handleChange}/>
+            <StyledInput name="img" defaultValue={this.props.profileImage} onChange={this.props.handleChange}/>
 
             <StyledLabel>Name: </StyledLabel>
-            <StyledInput name="name" defaultValue={this.props.name} onChange={this.handleChange}/>
+            <StyledInput name="name" defaultValue={this.props.name} onChange={this.props.handleChange}/>
 
             <StyledLabel>Cost: </StyledLabel>
-            <StyledInput name="cost" defaultValue={this.props.cost} onChange={this.handleChange}/>
+            <StyledInput name="cost" defaultValue={this.props.cost} onChange={this.props.handleChange}/>
 
             <StyledLabel>Description: </StyledLabel>
-            <StyledInput name="description" defaultValue={this.props.description} onChange={this.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
+            <StyledInput name="description" defaultValue={this.props.description} onChange={this.props.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
             <ButtonContainer>
-              <Button id={this.props.id} onClick={e => this.save(e)}>Save</Button>
+              <Button id={this.props.id} onClick={e => this.props.save(e)}>Save</Button>
             </ButtonContainer>
           </WomanProfileContainer>
         ) 
