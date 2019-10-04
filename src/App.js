@@ -9,12 +9,16 @@ import styled from 'styled-components';
 function App() {
   return (
     <HashRouter>
-      <div className="App">
+      <MainContainer className="App">
         <Header />
         { Router }
-      </div>
+      </MainContainer>
     </HashRouter>
   );
 }
 
 export default App;
+
+const MainContainer = styled.section`
+  font-family: 'Verdana';
+`

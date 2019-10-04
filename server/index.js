@@ -1,10 +1,13 @@
-require("dotenv").config({ path: __dirname + "./../../.env" });
+require("dotenv").config({ path: __dirname + "./../.env" });
 
 const express = require('express');
+const cors = require('cors')
+
 const app = express();
 
 const { SERVER_PORT } = process.env;
 
+app.use(cors());
 app.use(express.json());
 
 const wc = require('./WomenController');
