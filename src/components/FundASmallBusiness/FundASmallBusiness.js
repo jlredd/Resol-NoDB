@@ -18,15 +18,9 @@ class FundASmallBusiness extends Component {
   }
 
   delete = (e) => {
-    console.log(e.target.id)
     axios.delete(`http://localhost:4423/api/women/${e.target.id}`)
     .then(res => this.setState({women: res.data}))
     .catch(err => console.log(err))
-  }
-
-  edit(){
-    console.log('Editing')
-    this.setState({allowEdit: true})
   }
   
   componentDidMount(){
@@ -49,7 +43,7 @@ class FundASmallBusiness extends Component {
               // console.log(e.name)
               // console.log(e.cost)
               // console.log(e.description)
-              return (<WomanProfile key={e.id} id={e.id} profileImage={e.img} name={e.name} cost={e.cost} description={e.description} edit={this.edit} delete={this.delete}/>)
+              return (<WomanProfile key={e.id} id={e.id} profileImage={e.img} name={e.name} cost={e.cost} description={e.description} delete={this.delete}/>)
             })}
         </MainDisplay>
       </MainContainer>
@@ -61,11 +55,17 @@ export default FundASmallBusiness;
 
 const MainContainer = styled.section`
   width: 100%;
-  height: 90vh;
+  // max-height: 100%;
+  // height: 90vh;
+  height: fit-content;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  // align-content: space-around;
+
+  // padding: 20px;
 `
 
 const ButtonContainer = styled.section`
@@ -90,7 +90,7 @@ const Button = styled.button`
 
 const MainDisplay = styled.section`
   width: 100%;
-  height: 100%;
+  height: 50%;
   
   display: flex;
 	flex-wrap: wrap;
