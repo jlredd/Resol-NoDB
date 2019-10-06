@@ -27,6 +27,10 @@ class FundASmallBusiness extends Component {
     this.setState({addWindowHidden: 'flex'})
   }
 
+  hideAdd = () => {
+    this.setState({addWindowHidden: 'none'})
+  }
+
   add = () => {
     const body = {
       img: this.state.img,
@@ -47,13 +51,13 @@ class FundASmallBusiness extends Component {
   edit =(e) => {
     this.setState({editCheck: [true, e.target.id]})
   }
-
+  
   delete = (e) => {
     axios.delete(`http://localhost:4423/api/women/${e.target.id}`)
     .then(res => this.setState({women: res.data}))
     .catch(err => console.log(err))
   }
-
+  
   save = (e) => {
     const body = {
       id: e.target.id,
@@ -69,7 +73,11 @@ class FundASmallBusiness extends Component {
     .then(res => this.setState({women: res.data, allowEdit: false}))
     .catch(err => console.log(err))
   }
-
+  
+  cancel = () => {
+    this.setState({editCheck: [false, 0]})
+  }
+  
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -104,6 +112,7 @@ class FundASmallBusiness extends Component {
             <StyledInput name="description" defaultValue={this.state.description} onChange={this.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
             <SmallButtonContainer>
               <SmallButton onClick={this.add}>Add</SmallButton>
+              <SmallButton onClick={this.hideAdd}>Cancel</SmallButton>
             </SmallButtonContainer>
           </AddWindow>
           {this.state.filterToggle ? (
@@ -135,6 +144,7 @@ class FundASmallBusiness extends Component {
                   description={e.description}
                   edit={this.edit}
                   editCheck={this.state.editCheck}
+                  cancelFn={this.cancel}
                   delete={this.delete} 
                   save={this.save} 
                   handleChange={this.handleChange}/>)
@@ -151,9 +161,12 @@ class FundASmallBusiness extends Component {
 export default FundASmallBusiness;
 
 const AddWindow = styled.section`
-  background-color: white;
-  width: 400px;
+  background-color: rgb(206, 206, 206);
+  width: 450px;
   height: 600px;
+  
+  border: 2px solid rgba(219, 164, 97, 0.274);
+  border-radius: 20px;
 
   display: ${props => props.display};
   flex-direction: column;
@@ -162,7 +175,7 @@ const AddWindow = styled.section`
 
   position: fixed;
   top: calc(50% - 300px);
-  left: calc(50% - 200px);
+  left: calc(50% - 225px);
 `
 
 const MainContainer = styled.section`
@@ -190,7 +203,7 @@ align-items: center;
 margin-top: 20px;
 `
 
-const Button = styled.button`
+const Button = styled(SmallButton)`
   width: 200px;
   height: 45px;
 

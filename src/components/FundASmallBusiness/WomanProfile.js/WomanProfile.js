@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WomanProfile = (props) => {
+  console.log(props)
   return (
     props.editCheck[0] && +props.editCheck[1] === props.id ? 
       (
@@ -20,6 +21,7 @@ const WomanProfile = (props) => {
           <StyledInput name="description" defaultValue={props.description} onChange={props.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
           <SmallButtonContainer>
             <SmallButton id={props.id} onClick={e => props.save(e)}>Save</SmallButton>
+            <SmallButton id={props.id} onClick={e => props.cancelFn(e)}>Cancel</SmallButton>
           </SmallButtonContainer>
         </WomanProfileContainer>
       ) 
@@ -101,17 +103,30 @@ const SmallButtonContainer = styled.section`
 `
 
 const SmallButton = styled.button`
+  background-color: rgba(219, 164, 97, 0.274);
   width: 70px;
   height: 35px;
 
-  border: none;
+  border: 2px solid grey;
   border-radius: 10px;
 
   box-shadow: 0px 0px 20px -1px #000000;
+  transition: box-shadow .3s;
 
   font-size: 16px;
+  font-weight: bolder;
 
   margin: 0 20px;
+
+  &:hover {
+    background-color: grey;
+    box-shadow: none;
+  }
+  
+  &:active {
+    background-color: white;
+    box-shadow: 0px 0px 20px rgb(219, 164, 97);
+  }
 `
 
 const StyledLabel = styled.label`
