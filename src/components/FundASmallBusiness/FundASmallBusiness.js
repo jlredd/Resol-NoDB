@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import WomanProfile from './WomanProfile.js/WomanProfile';
+import WomanProfile, {StyledInput, StyledLabel, SmallButtonContainer, SmallButton} from './WomanProfile.js/WomanProfile';
+// import {StyledInput} from './WomenProfile.js/WomenProfile';
 
 
 class FundASmallBusiness extends Component {
@@ -10,16 +11,41 @@ class FundASmallBusiness extends Component {
     
     this.state = {
       women: [],
-      allowEdit: false,
+      filterWomen: [],
+      editCheck: [false, 0],
       img: '',
       name: '',
       cost: 0,
-      description: ''
+      description: '',
+      addWindowHidden: 'none',
+      filter: false,
+      filterToggle: false
     }
   }
 
-  add = () => {
+  showAdd = () => {
+    this.setState({addWindowHidden: 'flex'})
+  }
 
+  add = () => {
+    const body = {
+      img: this.state.img,
+      name: this.state.name,
+      cost: this.state.cost,
+      description: this.state.description
+    }
+
+    axios.post('http://localhost:4423/api/women', body)
+    .then(res => this.setState({women: res.data, addWindowHidden: 'none'}))
+    .catch(err => console.log(err))
+  }
+
+  filter = (e) => {
+    this.setState({filter: e.target.name ,filterToggle: !this.state.filterToggle})
+  }
+
+  edit =(e) => {
+    this.setState({editCheck: [true, e.target.id]})
   }
 
   delete = (e) => {
@@ -29,27 +55,22 @@ class FundASmallBusiness extends Component {
   }
 
   save = (e) => {
-    console.log('saving')
-
     const body = {
       id: e.target.id,
-      img: this.props.img,
-      name: this.props.name,
-      cost: this.props.cost,
-      description: this.props.description
+      img: this.state.img,
+      name: this.state.name,
+      cost: this.state.cost,
+      description: this.state.description
     }
-
-    console.log(body)
+    
+    this.setState({editCheck: [false, 0]})
 
     axios.put(`http://localhost:4423/api/women/${e.target.id}`, body)
     .then(res => this.setState({women: res.data, allowEdit: false}))
     .catch(err => console.log(err))
-
-
   }
 
   handleChange = (e) => {
-    console.log(this.state[e.target.name])
     this.setState({[e.target.name]: e.target.value})
   }
   
@@ -63,18 +84,64 @@ class FundASmallBusiness extends Component {
     return(
       <MainContainer>
         <ButtonContainer>
-          <Button>$500</Button>
-          <Button>$1000</Button>
-          <Button>$1500</Button>
+          <Button onClick={this.showAdd}>Add</Button>
+          <Button name='500' onClick={e => this.filter(e)}>$500</Button>
+          <Button name='1000' onClick={e => this.filter(e)}>$1000</Button>
+          <Button name='1500' onClick={e => this.filter(e)}>$1500</Button>
         </ButtonContainer>
         <MainDisplay>
-          {this.state.women.map((e, i) => {
-              // console.log(e.img)
-              // console.log(e.name)
-              // console.log(e.cost)
-              // console.log(e.description)
-              return (<WomanProfile key={e.id} id={e.id} profileImage={e.img} name={e.name} cost={e.cost} description={e.description} delete={this.delete} save={this.save} handleChange={this.handlChange}/>)
-            })}
+          <AddWindow display={this.state.addWindowHidden}>
+            <StyledLabel>Profile Picture: </StyledLabel>
+            <StyledInput name="img" defaultValue={this.state.profileImage} onChange={this.handleChange}/>
+
+            <StyledLabel>Name: </StyledLabel>
+            <StyledInput name="name" defaultValue={this.state.name} onChange={this.handleChange}/>
+
+            <StyledLabel>Cost: </StyledLabel>
+            <StyledInput name="cost" defaultValue={this.state.cost} onChange={this.handleChange}/>
+
+            <StyledLabel>Description: </StyledLabel>
+            <StyledInput name="description" defaultValue={this.state.description} onChange={this.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
+            <SmallButtonContainer>
+              <SmallButton onClick={this.add}>Add</SmallButton>
+            </SmallButtonContainer>
+          </AddWindow>
+          {this.state.filterToggle ? (
+            this.state.women.map(e => {
+              if(e.cost === +this.state.filter){
+              return (
+              <WomanProfile 
+              key={e.id} 
+              id={e.id} 
+              profileImage={e.img} 
+              name={e.name} 
+              cost={e.cost} 
+              description={e.description}
+              edit={this.edit}
+              editCheck={this.state.editCheck}
+              delete={this.delete} 
+              save={this.save} 
+              handleChange={this.handleChange}
+              />)}})
+          ) :
+          (
+            this.state.women.map((e, i) => {
+                return (<WomanProfile 
+                  key={e.id} 
+                  id={e.id} 
+                  profileImage={e.img} 
+                  name={e.name} 
+                  cost={e.cost} 
+                  description={e.description}
+                  edit={this.edit}
+                  editCheck={this.state.editCheck}
+                  delete={this.delete} 
+                  save={this.save} 
+                  handleChange={this.handleChange}/>)
+              })
+
+          )
+          }
         </MainDisplay>
       </MainContainer>
     )
@@ -82,6 +149,21 @@ class FundASmallBusiness extends Component {
 }
 
 export default FundASmallBusiness;
+
+const AddWindow = styled.section`
+  background-color: white;
+  width: 400px;
+  height: 600px;
+
+  display: ${props => props.display};
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  position: fixed;
+  top: calc(50% - 300px);
+  left: calc(50% - 200px);
+`
 
 const MainContainer = styled.section`
   width: 100%;
@@ -99,7 +181,7 @@ const MainContainer = styled.section`
 `
 
 const ButtonContainer = styled.section`
-width: 30%;
+width: 50%;
 
 display: flex;
 justify-content: space-between;

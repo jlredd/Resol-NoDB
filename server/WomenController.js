@@ -34,7 +34,7 @@ const women = [
   },
 ]
 
-let id = 1;
+let id = 5;
 
 // console.log(women)
 
@@ -46,7 +46,7 @@ module.exports = {
       id: id,
       img: img,
       name: name,
-      cost: cost,
+      cost: +cost,
       description: description
     }
     women.push(newWoman);
@@ -67,7 +67,7 @@ module.exports = {
     women[womanIndex].id = women[womanIndex].id;
     women[womanIndex].img = img || women[womanIndex].img;
     women[womanIndex].name = name || women[womanIndex].name;
-    women[womanIndex].cost = cost || women[womanIndex].cost;
+    women[womanIndex].cost = +cost || women[womanIndex].cost;
     women[womanIndex].description = description || women[womanIndex].description;
 
     res.status(200).send(women);
