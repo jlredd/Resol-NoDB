@@ -30,9 +30,11 @@ const StyledLink = styled(Link)`
   padding: 5px;
 
   &:hover {
+    transition: border .3s;
     border: 1px solid black;
     border-radius: 10px;
 
+    transition: box-shadow .3s;
     box-shadow: 0 0 10px black;
   }
 

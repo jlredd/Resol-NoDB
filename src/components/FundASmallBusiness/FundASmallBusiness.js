@@ -45,7 +45,11 @@ class FundASmallBusiness extends Component {
   }
 
   filter = (e) => {
-    this.setState({filter: e.target.name ,filterToggle: !this.state.filterToggle})
+    if(this.state.filter === e.target.name){
+      this.setState({filterToggle: !this.state.filterToggle})
+    } else {
+      this.setState({filter: e.target.name})
+    }
   }
 
   edit =(e) => {

@@ -27,5 +27,5 @@ const HeaderContainer = styled.header`
 const CompanyName = styled.h1`
   font-size: 60px;
 
-  text-shadow: 5px 5px 10px black;
+  text-shadow: 5px 5px 5px black;
 `

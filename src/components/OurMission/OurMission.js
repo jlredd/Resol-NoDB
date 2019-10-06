@@ -13,11 +13,16 @@ class OurMission extends Component {
 
   render(){
     return (
-      <OurMissionContainer >
-          <MainDisplayText>
-            Yesterday, 4,700 Venezuelans were forced to abandon their homes, careers, and families.
-          </MainDisplayText>
-      </OurMissionContainer>
+      <>
+        <OurMissionContainer >
+            <MainDisplayText>
+              Yesterday, 4,700 Venezuelans were forced to abandon their homes, careers, and families.
+            </MainDisplayText>
+        </OurMissionContainer>
+        <VideoBackground>
+          <iframe width="1280" height="720" src="https://www.youtube.com/embed/CTbATPcyPqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </VideoBackground>
+      </>
     )
   }
 }
@@ -48,4 +53,13 @@ const MainDisplayText = styled.h1`
   font-size: 70px;
   text-align: center;
   text-shadow: 0 0 10px white;  
+`
+
+const VideoBackground = styled.section`
+  width: 100%;
+  height: 70vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
