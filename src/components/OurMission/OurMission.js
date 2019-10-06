@@ -35,7 +35,7 @@ const OurMissionContainer = styled.section`
   background-position: center;
 
   width: 100%;
-  height: 90vh;
+  height: 80vh;
 
   display: flex;
   justify-content: center;
@@ -56,8 +56,9 @@ const MainDisplayText = styled.h1`
 `
 
 const VideoBackground = styled.section`
+  background-color: rgba(245, 228, 156, 0.164);
   width: 100%;
-  height: 70vh;
+  height: 100vh;
 
   display: flex;
   justify-content: center;

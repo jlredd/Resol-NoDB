@@ -7,6 +7,7 @@ const NavBar = () => {
       <NavBarContainer>
         <StyledLink to='/our-mission'>Our Mission</StyledLink>
         <StyledLink to='/fund-a-small-business'>Fund A Small Business</StyledLink>
+        <StyledLink to='/our-team'>Our Team</StyledLink> 
       </NavBarContainer>
   )
 }

@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const wc = require('./WomenController');
+const tc = require('./OurTeamController')
 
 //Get
 app.get("/api/women", wc.read);
@@ -23,5 +24,8 @@ app.post('/api/women', wc.create);
 
 //Delete
 app.delete('/api/women/:id', wc.delete);
+
+//Get
+app.get("/api/our-team", tc.read)
 
 app.listen(SERVER_PORT, () => {console.log(`Old Gregg wants to play love games on port ${SERVER_PORT}`)});
