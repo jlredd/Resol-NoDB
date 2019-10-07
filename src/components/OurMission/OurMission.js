@@ -20,7 +20,7 @@ class OurMission extends Component {
             </MainDisplayText>
         </OurMissionContainer>
         <VideoBackground>
-          <iframe width="1280" height="720" src="https://www.youtube.com/embed/CTbATPcyPqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Venezuela Sole Project" width="1280" height="720" src="https://www.youtube.com/embed/CTbATPcyPqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </VideoBackground>
       </>
     )

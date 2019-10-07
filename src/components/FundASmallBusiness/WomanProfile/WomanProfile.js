@@ -4,31 +4,31 @@ import styled from 'styled-components';
 const WomanProfile = (props) => {
   console.log(props)
   return (
-    props.editCheck[0] && +props.editCheck[1] === props.id ? 
+    props.editCheck[0] && +props.editCheck[1] === props.id ?
       (
         <WomanProfileContainer>
           {/* <ProfileImage src={props.profileImage}/> */}
           <StyledLabel>Profile Picture: </StyledLabel>
-          <StyledInput name="img" defaultValue={props.profileImage} onChange={props.handleChange}/>
+          <StyledInput name="img" defaultValue={props.profileImage} onChange={props.handleChange} />
 
           <StyledLabel>Name: </StyledLabel>
-          <StyledInput name="name" defaultValue={props.name} onChange={props.handleChange}/>
+          <StyledInput name="name" defaultValue={props.name} onChange={props.handleChange} />
 
           <StyledLabel>Cost: </StyledLabel>
-          <StyledInput name="cost" defaultValue={props.cost} onChange={props.handleChange}/>
+          <StyledInput name="cost" defaultValue={props.cost} onChange={props.handleChange} />
 
           <StyledLabel>Description: </StyledLabel>
-          <StyledInput name="description" defaultValue={props.description} onChange={props.handleChange} style={{height: 100 + "px", width: 400 + "px"}}/>
+          <StyledInput name="description" defaultValue={props.description} onChange={props.handleChange} style={{ height: 100 + "px", width: 400 + "px" }} />
           <SmallButtonContainer>
             <SmallButton id={props.id} onClick={e => props.save(e)}>Save</SmallButton>
             <SmallButton id={props.id} onClick={e => props.cancelFn(e)}>Cancel</SmallButton>
           </SmallButtonContainer>
         </WomanProfileContainer>
-      ) 
+      )
       :
       (
         <WomanProfileContainer>
-          <ProfileImage src={props.profileImage}/>
+          <ProfileImage src={props.profileImage} />
           <Name>{props.name}</Name>
           <Cost>$ {props.cost}</Cost>
           <Description>{props.description}</Description>
@@ -38,12 +38,10 @@ const WomanProfile = (props) => {
           </SmallButtonContainer>
         </WomanProfileContainer>
       )
-      )
+  )
 }
 
 
-export default WomanProfile;
-export {StyledInput, StyledLabel, SmallButtonContainer, SmallButton}
 
 const WomanProfileContainer = styled.section`
   width: 30%;
@@ -90,7 +88,7 @@ const SmallButton = styled.button`
   background-color: rgba(219, 164, 97, 0.274);
   width: 70px;
   height: 35px;
-
+  
   border: none;
   border-radius: 10px;
   
@@ -109,7 +107,7 @@ const SmallButton = styled.button`
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
   transition-property: transform;
-
+  
   &:before {
     pointer-events: none;
     position: absolute;
@@ -128,7 +126,7 @@ const SmallButton = styled.button`
     -webkit-transition-property: transform, opacity;
     transition-property: transform, opacity;
   }
-
+  
   &:hover {
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
@@ -143,34 +141,43 @@ const SmallButton = styled.button`
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
-
-  &:hover:before {
+  
+  &:hover:before, &:focus:before, &:active:before {
     opacity: 1;
     -webkit-transform: translateY(5px);
     transform: translateY(5px);
   }
   
-  &:focus:before {
-    opacity: 1;
-    -webkit-transform: translateY(5px);
-    transform: translateY(5px);
-  }
+  // &:hover:before {
+  //   opacity: 1;
+  //   -webkit-transform: translateY(5px);
+  //   transform: translateY(5px);
+  // }
+    
+  // &:focus:before {
+  //   opacity: 1;
+  //   -webkit-transform: translateY(5px);
+  //   transform: translateY(5px);
+  // }
   
-  &:active:before {
-    opacity: 1;
-    -webkit-transform: translateY(5px);
-    transform: translateY(5px);
-  }
+  // &:active:before {
+  //   opacity: 1;
+  //   -webkit-transform: translateY(5px);
+  //   transform: translateY(5px);
+  // }
 `
 
 const StyledLabel = styled.label`
-  
+        
 `
 
 const StyledInput = styled.textarea`
   width: 200px;
-
+  
   word-wrap: break-word;
-
+  
   text-align: center;
 `
+
+export default WomanProfile;
+export { StyledInput, StyledLabel, SmallButtonContainer, SmallButton }
