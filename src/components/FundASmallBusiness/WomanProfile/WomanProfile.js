@@ -46,13 +46,8 @@ export default WomanProfile;
 export {StyledInput, StyledLabel, SmallButtonContainer, SmallButton}
 
 const WomanProfileContainer = styled.section`
-  // background-color: rgba(255, 228, 196, 0.274);
-
   width: 30%;
   height: 900px;
-
-  // border: 1px solid black;
-  // border-radius: 20px;
 
   display: flex;
   flex-direction: column;
@@ -60,8 +55,6 @@ const WomanProfileContainer = styled.section`
   align-items: center;
 
   padding: 10px 45px;
-
-  // margin-top: 20px;
 `
 
 const ProfileImage = styled.img`
@@ -71,25 +64,18 @@ const ProfileImage = styled.img`
   border-radius: 20px;
 
   box-shadow: 0px 0px 20px 5px #000000;
-  // margin-top: 20px;
 `
 
 const Name = styled.h3`
   font-size: 40px;
-
-  // margin-top: 20px;
 `
 
 const Cost = styled.h2`
   font-size: 30px;
-
-  // margin-top: 20px;
 `
 
 const Description = styled.p`
   font-size: 20px;
-  
-  // margin-top: 20px;
 `
 
 const SmallButtonContainer = styled.section`
@@ -98,8 +84,6 @@ const SmallButtonContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  // margin-top: 20px;
 `
 
 const SmallButton = styled.button`
@@ -107,25 +91,75 @@ const SmallButton = styled.button`
   width: 70px;
   height: 35px;
 
-  border: 2px solid grey;
+  border: none;
   border-radius: 10px;
-
-  transition: box-shadow .3s;
   
   font-size: 16px;
   font-weight: bolder;
   
   margin: 0 20px;
   
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+
+  &:before {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    /* W3C */
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, opacity;
+    transition-property: transform, opacity;
+  }
+
   &:hover {
-    background-color: grey;
-    box-shadow: 0px 0px 20px -1px #000000;
-    // box-shadow: none;
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+  
+  &:focus {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
   }
   
   &:active {
-    background-color: white;
-    box-shadow: 0px 0px 20px rgb(219, 164, 97);
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+
+  &:hover:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+  
+  &:focus:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+  
+  &:active:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
   }
 `
 
@@ -135,7 +169,6 @@ const StyledLabel = styled.label`
 
 const StyledInput = styled.textarea`
   width: 200px;
-  // height: fit-content;
 
   word-wrap: break-word;
 

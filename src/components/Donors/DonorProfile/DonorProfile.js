@@ -14,7 +14,6 @@ const DonorProfile = (props) => {
 export default DonorProfile
 
 const DonorProfileContainer = styled.section`
-  // background-color: black;
   width: 30%;
   height: 70vh;
 

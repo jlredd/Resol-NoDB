@@ -16,13 +16,10 @@ const TeamMember = (props) => {
 export default TeamMember;
 
 const ProfileContainer = styled.section`
-  // background-color: black;
-
   width: 100%;
   height: 80vh;
 
   display: flex;
-  // flex-direction: column;
 
   margin-bottom: 50px;
 

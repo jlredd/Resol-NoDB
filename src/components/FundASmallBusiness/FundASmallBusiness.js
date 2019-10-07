@@ -52,6 +52,8 @@ class FundASmallBusiness extends Component {
   }
 
   filter = (e) => {
+    this.setState({filter: e.target.name, filterToggle: !this.state.filterToggle})
+
     if(this.state.filter === e.target.name){
       this.setState({filterToggle: !this.state.filterToggle})
     } else {
@@ -198,17 +200,12 @@ const AddWindow = styled.section`
 
 const MainContainer = styled.section`
   width: 100%;
-  // max-height: 100%;
-  // height: 90vh;
   height: fit-content;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  // align-content: space-around;
-
-  // padding: 20px;
 `
 
 const ButtonContainer = styled.section`

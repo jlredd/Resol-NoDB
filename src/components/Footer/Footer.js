@@ -18,7 +18,6 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.footer`
-  // background-color: tan;
   width: 100%;
   height: 5vh;
 

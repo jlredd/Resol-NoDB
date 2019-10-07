@@ -36,7 +36,6 @@ class Donors extends Component {
 export default Donors;
 
 const MainContainer = styled.section`
-  // background-color: tan;
   width: 100%;
   height: 75vh;
 

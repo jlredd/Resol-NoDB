@@ -31,18 +31,53 @@ const StyledLink = styled(Link)`
   
   padding: 5px;
 
-  &:hover {
-    transition: border .3s;
-    border: 1px solid black;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    // border: #e1e1e1 solid 4px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: border, top, right, bottom, left;
+    transition-property: border, top, right, bottom, left;
+  }
+  
+  &:hover:before {
+    border: #e1e1e1 solid 4px;
     border-radius: 10px;
-
-    transition: box-shadow .3s;
-    box-shadow: 0 0 10px black;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+  }
+  
+  &:focus:before {
+    border: #e1e1e1 solid 4px;
+    border-radius: 10px;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+  }
+  
+  &:active:before {
+    border: #e1e1e1 solid 4px;
+    border-radius: 10px;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
   }
 
-  &:active {
-    color: white;
-
-    background-color: black;
-  }
+  
 `
