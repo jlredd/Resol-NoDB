@@ -95,7 +95,13 @@ class FundASmallBusiness extends Component {
   }
   
   cancel = () => {
-    this.setState({editCheck: [false, 0]})
+    this.setState({
+      editCheck: [false, 0],
+      img: '',
+      name: '',
+      cost: 0,
+      description: ''
+    })
   }
   
   handleChange = (e) => {
