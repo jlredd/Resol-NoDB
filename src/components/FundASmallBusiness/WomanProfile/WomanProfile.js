@@ -110,17 +110,17 @@ const SmallButton = styled.button`
   border: 2px solid grey;
   border-radius: 10px;
 
-  box-shadow: 0px 0px 20px -1px #000000;
   transition: box-shadow .3s;
-
+  
   font-size: 16px;
   font-weight: bolder;
-
+  
   margin: 0 20px;
-
+  
   &:hover {
     background-color: grey;
-    box-shadow: none;
+    box-shadow: 0px 0px 20px -1px #000000;
+    // box-shadow: none;
   }
   
   &:active {

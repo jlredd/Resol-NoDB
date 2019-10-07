@@ -56,9 +56,9 @@ const MainDisplayText = styled.h1`
 `
 
 const VideoBackground = styled.section`
-  background-color: rgba(245, 228, 156, 0.164);
+  // background-color: rgba(245, 228, 156, 0.164);
   width: 100%;
-  height: 100vh;
+  height: 95vh;
 
   display: flex;
   justify-content: center;

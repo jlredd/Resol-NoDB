@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import WomanProfile, {StyledInput, StyledLabel, SmallButtonContainer, SmallButton} from './WomanProfile.js/WomanProfile';
+import WomanProfile, {StyledInput, StyledLabel, SmallButtonContainer, SmallButton} from './WomanProfile/WomanProfile';
 // import {StyledInput} from './WomenProfile.js/WomenProfile';
 
 
@@ -40,7 +40,14 @@ class FundASmallBusiness extends Component {
     }
 
     axios.post('http://localhost:4423/api/women', body)
-    .then(res => this.setState({women: res.data, addWindowHidden: 'none'}))
+    .then(res => this.setState({
+      women: res.data, 
+      addWindowHidden: 'none',
+      img: '',
+      name: '',
+      cost: 0,
+      description: ''
+    }))
     .catch(err => console.log(err))
   }
 
@@ -74,7 +81,14 @@ class FundASmallBusiness extends Component {
     this.setState({editCheck: [false, 0]})
 
     axios.put(`http://localhost:4423/api/women/${e.target.id}`, body)
-    .then(res => this.setState({women: res.data, allowEdit: false}))
+    .then(res => this.setState({
+      women: res.data, 
+      allowEdit: false,
+      img: '',
+      name: '',
+      cost: 0,
+      description: ''
+    }))
     .catch(err => console.log(err))
   }
   

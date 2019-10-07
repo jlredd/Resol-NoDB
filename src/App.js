@@ -5,6 +5,7 @@ import './App.css';
 import Router from './Router'
 import Header from './components/Header/Header';
 import styled from 'styled-components';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <MainContainer className="App">
         <Header />
         { Router }
+        <Footer />
       </MainContainer>
     </HashRouter>
   );

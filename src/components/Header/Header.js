@@ -28,8 +28,9 @@ const HeaderContainer = styled.header`
 
 const CompanyName = styled.h1`
   font-size: 120px;
+  letter-spacing: 20px;
 
-  text-shadow: 5px 5px 5px black;
+  text-shadow: 15px 10px 8px grey;
 
   margin-bottom: 30px;
 `
